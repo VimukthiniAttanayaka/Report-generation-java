@@ -1,4 +1,5 @@
 package com.company;
+import com.company.databasRead.DatabaseTableDataRepository;
 import com.company.reportsend.ReportSendMail;
 import com.company.ui.UserInstruction;
 
@@ -36,7 +37,7 @@ public class Main {
             Scanner getEmail = new Scanner(System.in);
             String emailReceipient = getEmail.next();
 
-            String FilePath = "C:\\Users\\attanaya-se18006\\Desktop\\shopping.xlsx";
+            String FilePath = "./ResultSheet.xlsx";
 
             ReportSendMail reportSendMail = new ReportSendMail();
             reportSendMail.sendReportMain(emailReceipient, FilePath);

@@ -1,7 +1,6 @@
-package com.company;
+package com.company.databasRead;
 
 import java.sql.*;
-import java.util.Date;
 
 public class DatabaseTableDataRepository implements TableDataRepository{
 
