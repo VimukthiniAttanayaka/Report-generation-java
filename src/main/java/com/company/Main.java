@@ -7,9 +7,10 @@ public class Main {
 
     public static void main(String[] args) throws MessagingException, IOException {
 
+        String emailReceipient = "vimukthinia@gmail.com";
+        String FilePath = "C:\\Users\\attanaya-se18006\\Desktop\\shopping.xlsx";
+
         Mail mail = new Mail();
-        mail.setupServerProperties();
-        mail.draftEmail();
-        mail.sendEmail();
+        mail.main(emailReceipient,FilePath);
     }
 }

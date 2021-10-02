@@ -11,11 +11,18 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-public class Mail {
+
+class Mail
+{
     Session newSession = null;
     MimeMessage mimeMessage = null;
+    public void main(String emailReceipient,String FilePath) throws MessagingException, IOException {
+        setupServerProperties();
+        draftEmail(emailReceipient,FilePath);
+        sendEmail();
+    }
 
-
+    //SEND EMAIL
     public void sendEmail() throws MessagingException {
         String fromUser = "etextile2021@gmail.com";
         String fromUserPassword = "2021EText@$";
@@ -27,26 +34,29 @@ public class Mail {
         System.out.println("Email successfully sent!!!");
     }
 
-    public MimeMessage draftEmail() throws MessagingException, IOException {
-        String emailReceipient = "abc@gmail.com";
+    //DRAFT AN EMAIL
+    public MimeMessage draftEmail(String emailReceipient,String FilePath) throws MessagingException, IOException {
         String emailSubject = "Test Mail";
         String emailBody = "Test Body of my email";
         mimeMessage = new MimeMessage(newSession);
-
         mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailReceipient));
-        mimeMessage.setSubject(emailSubject);
 
+        mimeMessage.setSubject(emailSubject);
 
         MimeBodyPart bodyPart = new MimeBodyPart();
         bodyPart.setContent(emailBody,"text/html");
+
         MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-        attachmentBodyPart.attachFile(new File("C:\\Users\\attanaya-se18006\\Desktop\\shopping.xlsx"));
+        attachmentBodyPart.attachFile(new File(FilePath));
+
         MimeMultipart multiPart = new MimeMultipart();
         multiPart.addBodyPart(bodyPart);
+        multiPart.addBodyPart(attachmentBodyPart);
         mimeMessage.setContent(multiPart);
         return mimeMessage;
     }
 
+    //SETUP MAIL SERVER PROPERTIES
     public void setupServerProperties() {
         Properties properties = System.getProperties();
         properties.put("mail.smtp.port", "587");
