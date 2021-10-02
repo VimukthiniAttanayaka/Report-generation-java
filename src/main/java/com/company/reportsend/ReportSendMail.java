@@ -35,8 +35,8 @@ public class ReportSendMail implements ReportSend
     //DRAFT AN EMAIL
     private MimeMessage draftEmail(String emailReceipient,String FilePath) throws MessagingException, IOException {
 
-        String emailSubject = "Test Mail";
-        String emailBody = "Test Body of my email";
+        String emailSubject = "Report send using email";
+        String emailBody = "This a report, What you ask:";
         mimeMessage = new MimeMessage(newSession);
 
         mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailReceipient));
@@ -63,6 +63,5 @@ public class ReportSendMail implements ReportSend
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         newSession = Session.getDefaultInstance(properties,null);
-        newSession.setDebug(true);
     }
 }
