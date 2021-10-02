@@ -28,7 +28,9 @@ public class DatabaseTableDataRepository implements TableDataRepository{
 
             resultSet = statement.executeQuery("SELECT * FROM "+table+" WHERE date BETWEEN '"+date1+"' AND '"+date2+"'");
 
+
         return resultSet;
 
     }
+
 }
