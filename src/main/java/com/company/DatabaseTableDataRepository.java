@@ -5,11 +5,11 @@ import java.util.Date;
 
 public class DatabaseTableDataRepository implements TableDataRepository{
 
-    Date date1;
-    Date date2;
+    String date1;
+    String date2;
     String table;
 
-    public DatabaseTableDataRepository(Date date1, Date date2, String table){
+    public DatabaseTableDataRepository(String date1, String date2, String table){
         this.date1 =  date1;
         this.date2 = date2;
         this.table = table;

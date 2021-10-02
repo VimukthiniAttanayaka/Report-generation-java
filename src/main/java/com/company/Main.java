@@ -9,11 +9,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
 import javax.mail.MessagingException;
-/*
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-*/
+
 
 public class Main {
 
@@ -25,10 +21,12 @@ public class Main {
         Date reportStartDate = userInstruction.reportTimeDurationStart();  //get start date
         Date reportEndDate = userInstruction.reportTimeDurationEnd();  //get sed date
 
-        DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository(reportStartDate, reportEndDate, "products");
+        DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository("2021-06-13", "2021-06-18", "products");
         ResultSet resultSet = databaseTableDataRepository.getTableData();
 
-        System.out.println(resultSet);
+        ExelWrite exelWrite = new ExelWrite();
+        exelWrite.main(resultSet);
+
 
         //ask for output doc type
         int outputMethod = userInstruction.outputType();
@@ -38,7 +36,7 @@ public class Main {
             Scanner getEmail = new Scanner(System.in);
             String emailReceipient = getEmail.next();
 
-            String FilePath = "C:\\Users\\Poornajith\\Desktop\\1.pdf";
+            String FilePath = "C:\\Users\\attanaya-se18006\\Desktop\\shopping.xlsx";
 
             ReportSendMail reportSendMail = new ReportSendMail();
             reportSendMail.sendReportMain(emailReceipient, FilePath);
