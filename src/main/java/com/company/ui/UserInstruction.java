@@ -23,22 +23,22 @@ public class UserInstruction {
     }
 
     public Date reportTimeDurationStart() throws ParseException {
-        System.out.println("Please enter Start date ex : YYYY-MM-DD");
+        System.out.println("Please enter Start date ex : dd/MM/yyyy");
 
         Scanner timePeriodOfReport = new Scanner(System.in);
         String timeDurationStartDate = timePeriodOfReport.next();
 
-        Date reportStartDate =new SimpleDateFormat("yyyy-MMM-dd").parse(timeDurationStartDate);
+        Date reportStartDate =new SimpleDateFormat("dd/MM/yyyy").parse(timeDurationStartDate);
         return(reportStartDate);
 
     }
     public Date reportTimeDurationEnd() throws ParseException {
-        System.out.println("Please enter EndDate ex : YYYY-MM-DD");
+        System.out.println("Please enter EndDate ex : dd/MM/yyyy");
 
         Scanner timePeriodOfReport = new Scanner(System.in);
         String timeDurationEndDate = timePeriodOfReport.next();
 
-        Date reportEndDate =new SimpleDateFormat("yyyy-MMM-dd").parse(timeDurationEndDate);
+        Date reportEndDate =new SimpleDateFormat("dd/MM/yyyy").parse(timeDurationEndDate);
         return(reportEndDate);
     }
 
