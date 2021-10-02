@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.reportsend.ReportSendMail;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,14 +12,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import javax.mail.MessagingException;
+		
+
+
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
-       
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException, MessagingException {
+
+       String emailReceipient = "vimukthinia@gmail.com";
+		String FilePath = "C:\\Users\\attanaya-se18006\\Desktop\\shopping.xlsx";
+
+		ReportSendMail reportSendMail = new ReportSendMail();
+		reportSendMail.sendReportMain(emailReceipient, FilePath);
+
+
     	//Data read and write
     	
     	DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository("2021-06-13", "2021-06-23", "products");
