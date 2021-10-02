@@ -1,15 +1,71 @@
 package com.company;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
+
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository("2021-06-13", "2021-06-23", "products");
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
+       
+    	//Data read and write
+    	
+    	DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository("2021-06-13", "2021-06-23", "products");
         ResultSet resultSet = databaseTableDataRepository.getTableData();
-
+        
+      		Connection con= DriverManager.getConnection("jdbc:mysql://locathost:3306/e-comece");
+      		
+      		//statement
+      		Statement stmt= con.createStatement();
+      		ResultSet rs= stmt.executeQuery("select * from products");
+      		
+      		//Excel
+      		XSSFWorkbook workbook=new XSSFWorkbook();
+      		XSSFSheet sheet = workbook.createSheet("Product data");
+      		
+      		XSSFRow row=sheet.createRow(0);
+      		row.createCell(0).setCellValue("ProductID");
+      		row.createCell(1).setCellValue("ProductName");
+      		row.createCell(2).setCellValue("ProductPrice");
+      		row.createCell(3).setCellValue("ProductUpdateDate");
+      		
+      		int r=1;
+      		while(rs.next())
+      		{	
+      			int productid= rs.getInt("ProductID");
+      			String productName= rs.getString("ProductName");
+      			float productPrice=rs.getFloat("ProductPrice");
+      			String date=rs.getString("ProductUpdateDate");
+      		
+      			row=sheet.createRow(r++);
+      			
+      			row.createCell(0).setCellValue(productid);
+      			row.createCell(0).setCellValue(productName);
+      			row.createCell(0).setCellValue(productPrice);
+      			row.createCell(0).setCellValue(date);
+      			
+      		}
+      		
+      		FileOutputStream fos=new FileOutputStream(".\\datafiles\\products.xlsx");
+      		workbook.write(fos);
+      		
+      		workbook.close();	
+      		fos.close();
+      		con.close();
+      		
+      		System.out.println("Done");
+      		
+      	//Data read and write
 
         //display options for user
 
