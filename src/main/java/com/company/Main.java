@@ -12,7 +12,6 @@ public class Main {
         String FilePath = "C:\\Users\\attanaya-se18006\\Desktop\\shopping.xlsx";
 
         ReportSendMail reportSendMail = new ReportSendMail();
-        reportSendMail.sendMailMain(emailReceipient,FilePath);
+        reportSendMail.sendReportMain(emailReceipient,FilePath);
     }
 }
-

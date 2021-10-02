@@ -9,12 +9,12 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.*;
 
-public class ReportSendMail
+public class ReportSendMail implements ReportSend
 {
     Session newSession = null;
     MimeMessage mimeMessage = null;
 
-    public void sendMailMain(String emailReceipient,String FilePath) throws MessagingException, IOException {
+    public void sendReportMain(String emailReceipient,String FilePath) throws MessagingException, IOException {
         setupServerProperties();
         draftEmail(emailReceipient,FilePath);
         sendEmail();
@@ -66,4 +66,3 @@ public class ReportSendMail
         newSession.setDebug(true);
     }
 }
-
