@@ -14,13 +14,7 @@ import javax.mail.internet.MimeMultipart;
 public class Mail {
     Session newSession = null;
     MimeMessage mimeMessage = null;
-    public static void main(String args[]) throws MessagingException, IOException
-    {
-        Mail mail = new Mail();
-        mail.setupServerProperties();
-        mail.draftEmail();
-        mail.sendEmail();
-    }
+
 
     public void sendEmail() throws MessagingException {
         String fromUser = "etextile2021@gmail.com";
@@ -33,7 +27,7 @@ public class Mail {
         System.out.println("Email successfully sent!!!");
     }
 
-    private MimeMessage draftEmail() throws MessagingException, IOException {
+    public MimeMessage draftEmail() throws MessagingException, IOException {
         String emailReceipient = "abc@gmail.com";
         String emailSubject = "Test Mail";
         String emailBody = "Test Body of my email";
