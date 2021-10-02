@@ -1,4 +1,4 @@
-package ui;
+package com.company.ui;
 
 public interface UI {
     int UserInstruction();

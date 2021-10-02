@@ -1,8 +1,7 @@
 package com.company;
 import com.company.reportsend.ReportSendMail;
-import ui.UserInstruction;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.company.ui.UserInstruction;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +23,7 @@ public class Main {
         String reportStartDate = userInstruction.reportTimeDurationStart();  //get start date
         String reportEndDate = userInstruction.reportTimeDurationEnd();  //get sed date
 
-        DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository(reportEndDate, reportEndDate, "products");
+        DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository(reportStartDate, reportEndDate, "products");
         ResultSet resultSet = databaseTableDataRepository.getTableData();
 
         System.out.println(resultSet);
