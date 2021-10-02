@@ -1,4 +1,4 @@
-package com.company;
+package com.company.MailSend;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,23 +7,21 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.*;
 
-class Mail
+public class ReportSendMail
 {
     Session newSession = null;
     MimeMessage mimeMessage = null;
-    public void main(String emailReceipient,String FilePath) throws MessagingException, IOException {
+
+    public void sendMailMain(String emailReceipient,String FilePath) throws MessagingException, IOException {
         setupServerProperties();
         draftEmail(emailReceipient,FilePath);
         sendEmail();
     }
 
     //SEND EMAIL
-    public void sendEmail() throws MessagingException {
+    private void sendEmail() throws MessagingException {
         String fromUser = "etextile2021@gmail.com";
         String fromUserPassword = "2021EText@$";
         String emailHost = "smtp.gmail.com";
@@ -35,12 +33,13 @@ class Mail
     }
 
     //DRAFT AN EMAIL
-    public MimeMessage draftEmail(String emailReceipient,String FilePath) throws MessagingException, IOException {
+    private MimeMessage draftEmail(String emailReceipient,String FilePath) throws MessagingException, IOException {
+
         String emailSubject = "Test Mail";
         String emailBody = "Test Body of my email";
         mimeMessage = new MimeMessage(newSession);
-        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailReceipient));
 
+        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailReceipient));
         mimeMessage.setSubject(emailSubject);
 
         MimeBodyPart bodyPart = new MimeBodyPart();
@@ -57,7 +56,7 @@ class Mail
     }
 
     //SETUP MAIL SERVER PROPERTIES
-    public void setupServerProperties() {
+    private void setupServerProperties() {
         Properties properties = System.getProperties();
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.auth", "true");
@@ -66,5 +65,5 @@ class Mail
         newSession = Session.getDefaultInstance(properties,null);
         newSession.setDebug(true);
     }
-
 }
+
