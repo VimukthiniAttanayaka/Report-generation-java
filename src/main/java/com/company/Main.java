@@ -5,6 +5,8 @@ import com.company.ui.UserInstruction;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Scanner;
 import javax.mail.MessagingException;
 /*
@@ -15,13 +17,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException, MessagingException, IOException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, MessagingException, IOException, ParseException {
 
 
         UserInstruction userInstruction = new UserInstruction();
         int reportType = userInstruction.UserInstruction();//get input option from user
-        String reportStartDate = userInstruction.reportTimeDurationStart();  //get start date
-        String reportEndDate = userInstruction.reportTimeDurationEnd();  //get sed date
+        Date reportStartDate = userInstruction.reportTimeDurationStart();  //get start date
+        Date reportEndDate = userInstruction.reportTimeDurationEnd();  //get sed date
 
         DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository(reportStartDate, reportEndDate, "products");
         ResultSet resultSet = databaseTableDataRepository.getTableData();
@@ -34,9 +36,8 @@ public class Main {
 
             System.out.println("Please enter email address");
             Scanner getEmail = new Scanner(System.in);
-            String email = getEmail.next();
+            String emailReceipient = getEmail.next();
 
-            String emailReceipient = email;
             String FilePath = "C:\\Users\\Poornajith\\Desktop\\1.pdf";
 
             ReportSendMail reportSendMail = new ReportSendMail();

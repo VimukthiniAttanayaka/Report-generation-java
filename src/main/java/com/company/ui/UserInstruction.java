@@ -1,6 +1,9 @@
 package com.company.ui;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
 public class UserInstruction {
 
@@ -19,22 +22,24 @@ public class UserInstruction {
 
     }
 
-    public String reportTimeDurationStart(){
+    public Date reportTimeDurationStart() throws ParseException {
         System.out.println("Please enter Start date ex : YYYY-MM-DD");
 
         Scanner timePeriodOfReport = new Scanner(System.in);
         String timeDurationStartDate = timePeriodOfReport.next();
 
-        return(timeDurationStartDate);
+        Date reportStartDate =new SimpleDateFormat("yyyy-MMM-dd").parse(timeDurationStartDate);
+        return(reportStartDate);
 
     }
-    public String reportTimeDurationEnd(){
+    public Date reportTimeDurationEnd() throws ParseException {
         System.out.println("Please enter EndDate ex : YYYY-MM-DD");
 
         Scanner timePeriodOfReport = new Scanner(System.in);
         String timeDurationEndDate = timePeriodOfReport.next();
 
-        return(timeDurationEndDate);
+        Date reportEndDate =new SimpleDateFormat("yyyy-MMM-dd").parse(timeDurationEndDate);
+        return(reportEndDate);
     }
 
     public int outputType(){
