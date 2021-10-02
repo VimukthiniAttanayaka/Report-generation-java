@@ -1,12 +1,12 @@
 package com.company;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMultipart;
 public class Mail {
     Session newSession = null;
     MimeMessage mimeMessage = null;
-    public static void main(String args[]) throws AddressException, MessagingException, IOException
+    public static void main(String args[]) throws MessagingException, IOException
     {
         Mail mail = new Mail();
         mail.setupServerProperties();
@@ -33,7 +33,7 @@ public class Mail {
         System.out.println("Email successfully sent!!!");
     }
 
-    private MimeMessage draftEmail() throws AddressException, MessagingException, IOException {
+    private MimeMessage draftEmail() throws MessagingException, IOException {
         String emailReceipient = "abc@gmail.com";
         String emailSubject = "Test Mail";
         String emailBody = "Test Body of my email";
@@ -45,6 +45,8 @@ public class Mail {
 
         MimeBodyPart bodyPart = new MimeBodyPart();
         bodyPart.setContent(emailBody,"text/html");
+        MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+        attachmentBodyPart.attachFile(new File("C:\\Users\\attanaya-se18006\\Desktop\\shopping.xlsx"));
         MimeMultipart multiPart = new MimeMultipart();
         multiPart.addBodyPart(bodyPart);
         mimeMessage.setContent(multiPart);
@@ -58,6 +60,7 @@ public class Mail {
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         newSession = Session.getDefaultInstance(properties,null);
+        newSession.setDebug(true);
     }
 
 }
