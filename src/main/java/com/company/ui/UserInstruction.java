@@ -23,12 +23,12 @@ public class UserInstruction {
     }
 
     public Date reportTimeDurationStart() throws ParseException {
-        System.out.println("Please enter report Start date ex : dd-MM-yyyy");
+        System.out.println("Please enter report Start date ex : yyyy-MM-dd");
 
         Scanner timePeriodOfReport = new Scanner(System.in);
         String timeDurationStartDate = timePeriodOfReport.next();
 
-        Date reportStartDate =new SimpleDateFormat("dd-MM-yyyy").parse(timeDurationStartDate);
+        Date reportStartDate =new SimpleDateFormat("yyyy-MM-dd").parse(timeDurationStartDate);
 
         return(reportStartDate);
 
@@ -36,12 +36,12 @@ public class UserInstruction {
     } //DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(ldt)
 
     public Date reportTimeDurationEnd() throws ParseException {
-        System.out.println("Please enter report EndDate ex : dd-MM-yyyy");
+        System.out.println("Please enter report EndDate ex : yyyy-MM-dd");
 
         Scanner timePeriodOfReport = new Scanner(System.in);
         String timeDurationEndDate = timePeriodOfReport.next();
 
-        Date reportEndDate =new SimpleDateFormat("dd-MM-yyyy").parse(timeDurationEndDate);
+        Date reportEndDate =new SimpleDateFormat("yyyy-MM-dd").parse(timeDurationEndDate);
         return(reportEndDate);
     }
 
