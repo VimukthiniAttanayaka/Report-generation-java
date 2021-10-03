@@ -1,4 +1,4 @@
-package com.company.databaseRead;
+package com.company.databasRead;
 
 import java.sql.*;
 
