@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import javax.mail.MessagingException;
@@ -24,6 +25,12 @@ public class Main {
         int reportType = userInstruction.UserInstruction();//get input option from user
         Date reportStartDate = userInstruction.reportTimeDurationStart();  //get start date
         Date reportEndDate = userInstruction.reportTimeDurationEnd();  //get sed date
+
+
+
+
+        String repoStartDate = new SimpleDateFormat("yyyy-MM-dd").format(reportStartDate);
+        String repoEndDate = new SimpleDateFormat("yyyy-MM-dd").format(reportEndDate);
 
         DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository("2021-06-13", "2021-06-18", "products");
         ResultSet resultSet = databaseTableDataRepository.getTableData();

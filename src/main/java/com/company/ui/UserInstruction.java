@@ -13,7 +13,6 @@ public class UserInstruction {
         System.out.println("1 for Monthly Sales report");
         System.out.println("2 for User Signup report");
         System.out.println("3 for Available Stock report");
-        System.out.println("4 for User feedback report");
 
         Scanner typeOfReport = new Scanner(System.in);
         int reportNum = typeOfReport.nextInt();
@@ -31,9 +30,7 @@ public class UserInstruction {
         Date reportStartDate =new SimpleDateFormat("yyyy-MM-dd").parse(timeDurationStartDate);
 
         return(reportStartDate);
-
-        //new SimpleDateFormat("MM-dd-yyyy").format(myDate)
-    } //DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(ldt)
+    }
 
     public Date reportTimeDurationEnd() throws ParseException {
         System.out.println("Please enter report EndDate ex : yyyy-MM-dd");
@@ -55,9 +52,5 @@ public class UserInstruction {
         return(outputMethod);
 
     }
-
-
-
-
 }
 
