@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 02, 2021 at 02:19 PM
--- Server version: 5.7.31
--- PHP Version: 7.3.21
+-- Generation Time: Oct 03, 2021 at 04:07 AM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `OrderCity` varchar(50) COLLATE latin1_german2_ci NOT NULL,
   `OrderPhone` varchar(20) COLLATE latin1_german2_ci NOT NULL,
   `OrderEmail` varchar(100) COLLATE latin1_german2_ci NOT NULL,
-  `OrderDate` date NOT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`OrderID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
 
@@ -44,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`OrderID`, `OrderUserID`, `OrderAmount`, `OrderShipAddress`, `OrderCity`, `OrderPhone`, `OrderEmail`, `OrderDate`) VALUES
+INSERT INTO `orders` (`OrderID`, `OrderUserID`, `OrderAmount`, `OrderShipAddress`, `OrderCity`, `OrderPhone`, `OrderEmail`, `date`) VALUES
 (1, 11, 1000, 'address1', 'city1', '0000000001', 'person1@gmail.com', '2020-10-01'),
 (2, 12, 1100, 'address2', 'city2', '0000000002', 'person2@gmail.com', '2020-10-02'),
 (3, 13, 1200, 'address3', 'city3', '0000000003', 'person3@gmail.com', '2020-10-03'),
@@ -107,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `ProductID` int(11) NOT NULL AUTO_INCREMENT,
   `ProductName` varchar(100) COLLATE latin1_german2_ci NOT NULL,
   `ProductPrice` float NOT NULL,
-  `ProductUpdateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` date NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`ProductID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=991 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
 
@@ -115,57 +116,57 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`ProductID`, `ProductName`, `ProductPrice`, `ProductUpdateDate`) VALUES
-(1, 'clothe1', 1095, '2021-06-12 19:30:50'),
-(2, 'clothe2', 995, '2021-06-13 21:41:20'),
-(3, 'clothe3', 895, '2021-06-14 22:40:00'),
-(4, 'clothe4', 795, '2021-06-15 23:40:00'),
-(5, 'clothe5', 695, '2021-06-17 00:40:00'),
-(6, 'clothe6', 595, '2021-06-18 01:40:00'),
-(7, 'clothe7', 495, '2021-06-19 02:40:00'),
-(8, 'clothe8', 395, '2021-06-20 03:40:00'),
-(9, 'clothe9', 295, '2021-06-21 04:40:00'),
-(10, 'clothe10', 195, '2021-06-22 05:40:00'),
-(11, 'clothe11', 95, '2021-06-23 06:40:00'),
-(12, 'clothe12', 95, '2021-06-24 07:40:00'),
-(13, 'clothe13', 100, '2021-06-25 08:40:00'),
-(14, 'clothe14', 200, '2021-06-26 09:40:00'),
-(15, 'clothe15', 300, '2021-06-27 10:40:00'),
-(16, 'clothe16', 400, '2021-06-28 11:40:00'),
-(17, 'clothe17', 500, '2021-06-29 12:40:00'),
-(18, 'clothe18', 600, '2021-06-30 13:40:00'),
-(19, 'clothe19', 700, '2021-07-01 14:40:00'),
-(20, 'clothe20', 800, '2021-07-02 15:40:00'),
-(21, 'clothe21', 900, '2021-07-03 16:40:00'),
-(22, 'clothe22', 1000, '2021-07-04 17:40:00'),
-(23, 'clothe23', 1100, '2021-07-04 18:40:00'),
-(24, 'clothe24', 1200, '2021-07-05 19:40:00'),
-(25, 'clothe25', 1300, '2021-07-06 20:40:00'),
-(26, 'clothe26', 1400, '2021-07-07 21:40:00'),
-(27, 'clothe27', 1500, '2021-07-08 22:40:00'),
-(28, 'clothe28', 1600, '2021-07-09 23:40:00'),
-(29, 'clothe29', 1700, '2021-07-11 00:40:00'),
-(30, 'clothe30', 1800, '2021-07-12 01:40:00'),
-(31, 'clothe31', 1900, '2021-07-13 02:40:00'),
-(32, 'clothe32', 2000, '2021-07-14 03:40:00'),
-(33, 'clothe33', 2100, '2021-07-15 04:40:00'),
-(34, 'clothe34', 2200, '2021-07-16 05:40:00'),
-(35, 'clothe35', 2300, '2021-07-17 06:40:00'),
-(36, 'clothe36', 2400, '2021-07-18 07:40:00'),
-(37, 'clothe37', 2500, '2021-07-19 08:40:00'),
-(38, 'clothe38', 2600, '2021-07-20 09:40:00'),
-(39, 'clothe39', 2700, '2021-07-21 10:40:00'),
-(40, 'clothe40', 2800, '2021-07-22 11:40:00'),
-(41, 'clothe41', 2900, '2021-07-23 12:40:00'),
-(42, 'clothe42', 3000, '2021-07-24 13:40:00'),
-(43, 'clothe43', 3100, '2021-07-25 14:40:00'),
-(44, 'clothe44', 3200, '2021-07-26 15:40:00'),
-(45, 'clothe45', 3300, '2021-07-27 16:40:00'),
-(46, 'clothe46', 3400, '2021-07-28 17:40:00'),
-(47, 'clothe47', 3500, '2021-07-28 18:40:00'),
-(48, 'clothe48', 3600, '2021-07-29 19:40:00'),
-(49, 'clothe49', 3700, '2021-07-30 20:40:00'),
-(50, 'clothe50', 3800, '2021-07-31 21:40:00');
+INSERT INTO `products` (`ProductID`, `ProductName`, `ProductPrice`, `date`) VALUES
+(1, 'clothe1', 1095, '2021-06-13'),
+(2, 'clothe2', 995, '2021-06-14'),
+(3, 'clothe3', 895, '2021-06-15'),
+(4, 'clothe4', 795, '2021-06-16'),
+(5, 'clothe5', 695, '2021-06-17'),
+(6, 'clothe6', 595, '2021-06-18'),
+(7, 'clothe7', 495, '2021-06-19'),
+(8, 'clothe8', 395, '2021-06-20'),
+(9, 'clothe9', 295, '2021-06-21'),
+(10, 'clothe10', 195, '2021-06-22'),
+(11, 'clothe11', 95, '2021-06-23'),
+(12, 'clothe12', 95, '2021-06-24'),
+(13, 'clothe13', 100, '2021-06-25'),
+(14, 'clothe14', 200, '2021-06-26'),
+(15, 'clothe15', 300, '2021-06-27'),
+(16, 'clothe16', 400, '2021-06-28'),
+(17, 'clothe17', 500, '2021-06-29'),
+(18, 'clothe18', 600, '2021-06-30'),
+(19, 'clothe19', 700, '2021-07-01'),
+(20, 'clothe20', 800, '2021-07-02'),
+(21, 'clothe21', 900, '2021-07-03'),
+(22, 'clothe22', 1000, '2021-07-04'),
+(23, 'clothe23', 1100, '2021-07-05'),
+(24, 'clothe24', 1200, '2021-07-06'),
+(25, 'clothe25', 1300, '2021-07-07'),
+(26, 'clothe26', 1400, '2021-07-08'),
+(27, 'clothe27', 1500, '2021-07-09'),
+(28, 'clothe28', 1600, '2021-07-10'),
+(29, 'clothe29', 1700, '2021-07-11'),
+(30, 'clothe30', 1800, '2021-07-12'),
+(31, 'clothe31', 1900, '2021-07-13'),
+(32, 'clothe32', 2000, '2021-07-14'),
+(33, 'clothe33', 2100, '2021-07-15'),
+(34, 'clothe34', 2200, '2021-07-16'),
+(35, 'clothe35', 2300, '2021-07-17'),
+(36, 'clothe36', 2400, '2021-07-18'),
+(37, 'clothe37', 2500, '2021-07-19'),
+(38, 'clothe38', 2600, '2021-07-20'),
+(39, 'clothe39', 2700, '2021-07-21'),
+(40, 'clothe40', 2800, '2021-07-22'),
+(41, 'clothe41', 2900, '2021-07-23'),
+(42, 'clothe42', 3000, '2021-07-24'),
+(43, 'clothe43', 3100, '2021-07-25'),
+(44, 'clothe44', 3200, '2021-07-26'),
+(45, 'clothe45', 3300, '2021-07-27'),
+(46, 'clothe46', 3400, '2021-07-28'),
+(47, 'clothe47', 3500, '2021-07-29'),
+(48, 'clothe48', 3600, '2021-07-30'),
+(49, 'clothe49', 3700, '2021-07-31'),
+(50, 'clothe50', 3800, '2021-08-01');
 
 -- --------------------------------------------------------
 
@@ -181,6 +182,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `UserName` varchar(50) COLLATE latin1_german2_ci DEFAULT NULL,
   `UserCity` varchar(90) COLLATE latin1_german2_ci DEFAULT NULL,
   `UserPhone` varchar(20) COLLATE latin1_german2_ci DEFAULT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`UserID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
 
@@ -188,57 +190,57 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UserID`, `UserEmail`, `UserPassword`, `UserName`, `UserCity`, `UserPhone`) VALUES
-(1, 'user1@gmail.com', 'password1', 'user1', 'city1', '0000000001'),
-(2, 'user2@gmail.com', 'password2', 'user2', 'city2', '0000000002'),
-(3, 'user3@gmail.com', 'password3', 'user3', 'city3', '0000000003'),
-(4, 'user4@gmail.com', 'password4', 'user4', 'city4', '0007000001'),
-(5, 'user5@gmail.com', 'password5', 'user5', 'city5', '0000040002'),
-(6, 'user6@gmail.com', 'password6', 'user6', 'city6', '0000100003'),
-(7, 'user7@gmail.com', 'password7', 'user7', 'city7', '0000600001'),
-(8, 'user8@gmail.com', 'password8', 'user8', 'city8', '0800000002'),
-(9, 'user9@gmail.com', 'password9', 'user9', 'city9', '0000400003'),
-(10, 'user10@gmail.com', 'password10', 'user10', 'city10', '0770000001'),
-(11, 'use11r@gmail.com', 'password11', 'user11', 'city11', '0088000002'),
-(12, 'user12@gmail.com', 'password12', 'user12', 'city12', '0006800003'),
-(13, 'user13@gmail.com', 'password13', 'user13', 'city13', '0000000001'),
-(14, 'use14r@gmail.com', 'password14', 'user14', 'city14', '2000000002'),
-(15, 'user15@gmail.com', 'password15', 'user15', 'city15', '002200003'),
-(16, 'user16@gmail.com', 'password16', 'user16', 'city16', '0000550001'),
-(17, 'user17@gmail.com', 'password17', 'user17', 'city17', '0005500002'),
-(18, 'user18@gmail.com', 'password18', 'user18', 'city18', '0450000003'),
-(19, 'use19r@gmail.com', 'password19', 'user19', 'city19', '0000220001'),
-(20, 'use20r@gmail.com', 'password20', 'user20', 'city20', '0250000002'),
-(21, 'user21@gmail.com', 'password21', 'user21', 'city21', '0056000003'),
-(22, 'user22@gmail.com', 'password22', 'user22', 'city22', '0022000001'),
-(23, 'user23@gmail.com', 'password23', 'user23', 'city23', '0004400002'),
-(24, 'user24@gmail.com', 'password24', 'user24', 'city24', '0220000003'),
-(25, 'user25@gmail.com', 'password25', 'user25', 'city25', '0088000001'),
-(26, 'use26r@gmail.com', ' password26', 'user26', 'city26', '0000250002'),
-(27, 'user27@gmail.com', 'password27', 'user27', 'city27', '0000007783'),
-(28, 'user28@gmail.com', 'password28', 'user28', 'city28', '0004440001'),
-(29, 'use29r@gmail.com', 'password29', 'user29', 'city29', '0558000002'),
-(30, 'user30@gmail.com', 'password30', 'user30', 'city30', '00125000003'),
-(31, 'user31@gmail.com', 'password31', 'user31', 'city31', '00058800001'),
-(32, 'user32@gmail.com', 'password32', 'user32', 'city32', '00007770002'),
-(33, 'user33@gmail.com', 'password33', 'user33', 'city33', '0000225003'),
-(34, 'user34@gmail.com', 'password34', 'user34', 'city34', '0007890001'),
-(35, 'user35@gmail.com', 'password35', 'user35', 'city35', '0004560002'),
-(36, 'user36@gmail.com', 'password36', 'user36', 'city36', '0028500003'),
-(37, 'use37r@gmail.com', 'password37', 'user37', 'city37', '0045600001'),
-(38, 'user38@gmail.com', 'password38', 'user38', 'city38', '0000012202'),
-(39, 'user39@gmail.com', 'password39', 'user39', 'city39', '0141000003'),
-(40, 'user40@gmail.com', 'password40', 'user40', 'city40', '0078950001'),
-(41, 'user41@gmail.com', 'password41', 'user41', 'city41', '0001257002'),
-(42, 'use42r@gmail.com', 'password42', 'user42', 'city42', '1400000003'),
-(43, 'use43r@gmail.com', 'password43', 'user43', 'city43', '0001450001'),
-(44, 'user44@gmail.com', 'password44', 'user44', 'city44', '0001250002'),
-(45, 'user45@gmail.com', 'password45', 'user45', 'city45', '00001280003'),
-(46, 'user46@gmail.com', 'password46', 'user46', 'city46', '00255000041'),
-(47, 'user47@gmail.com', 'password47', 'user47', 'city47', '00000255802'),
-(48, 'user48@gmail.com', 'password48', 'user48', ' city48', '0000255003'),
-(49, 'user49@gmail.com', 'password49', 'user49', 'city49', '0000255001'),
-(50, 'user50@gmail.com', 'password50', 'user50', 'city50', '0000258002');
+INSERT INTO `users` (`UserID`, `UserEmail`, `UserPassword`, `UserName`, `UserCity`, `UserPhone`, `date`) VALUES
+(1, 'user1@gmail.com', 'password1', 'user1', 'city1', '0000000001', '2021-08-10'),
+(2, 'user2@gmail.com', 'password2', 'user2', 'city2', '0000000002', '2021-08-11'),
+(3, 'user3@gmail.com', 'password3', 'user3', 'city3', '0000000003', '2021-08-12'),
+(4, 'user4@gmail.com', 'password4', 'user4', 'city4', '0007000001', '2021-08-13'),
+(5, 'user5@gmail.com', 'password5', 'user5', 'city5', '0000040002', '2021-08-14'),
+(6, 'user6@gmail.com', 'password6', 'user6', 'city6', '0000100003', '2021-08-15'),
+(7, 'user7@gmail.com', 'password7', 'user7', 'city7', '0000600001', '2021-08-16'),
+(8, 'user8@gmail.com', 'password8', 'user8', 'city8', '0800000002', '2021-08-17'),
+(9, 'user9@gmail.com', 'password9', 'user9', 'city9', '0000400003', '2021-08-18'),
+(10, 'user10@gmail.com', 'password10', 'user10', 'city10', '0770000001', '2021-08-19'),
+(11, 'use11r@gmail.com', 'password11', 'user11', 'city11', '0088000002', '2021-08-20'),
+(12, 'user12@gmail.com', 'password12', 'user12', 'city12', '0006800003', '2021-08-21'),
+(13, 'user13@gmail.com', 'password13', 'user13', 'city13', '0000000001', '2021-08-22'),
+(14, 'use14r@gmail.com', 'password14', 'user14', 'city14', '2000000002', '2021-08-23'),
+(15, 'user15@gmail.com', 'password15', 'user15', 'city15', '002200003', '2021-08-24'),
+(16, 'user16@gmail.com', 'password16', 'user16', 'city16', '0000550001', '2021-08-25'),
+(17, 'user17@gmail.com', 'password17', 'user17', 'city17', '0005500002', '2021-08-26'),
+(18, 'user18@gmail.com', 'password18', 'user18', 'city18', '0450000003', '2021-08-27'),
+(19, 'use19r@gmail.com', 'password19', 'user19', 'city19', '0000220001', '2021-08-28'),
+(20, 'use20r@gmail.com', 'password20', 'user20', 'city20', '0250000002', '2021-08-29'),
+(21, 'user21@gmail.com', 'password21', 'user21', 'city21', '0056000003', '2021-08-30'),
+(22, 'user22@gmail.com', 'password22', 'user22', 'city22', '0022000001', '2021-09-01'),
+(23, 'user23@gmail.com', 'password23', 'user23', 'city23', '0004400002', '2021-09-02'),
+(24, 'user24@gmail.com', 'password24', 'user24', 'city24', '0220000003', '2021-09-03'),
+(25, 'user25@gmail.com', 'password25', 'user25', 'city25', '0088000001', '2021-09-04'),
+(26, 'use26r@gmail.com', ' password26', 'user26', 'city26', '0000250002', '2021-09-05'),
+(27, 'user27@gmail.com', 'password27', 'user27', 'city27', '0000007783', '2021-09-06'),
+(28, 'user28@gmail.com', 'password28', 'user28', 'city28', '0004440001', '2021-09-07'),
+(29, 'use29r@gmail.com', 'password29', 'user29', 'city29', '0558000002', '2021-09-08'),
+(30, 'user30@gmail.com', 'password30', 'user30', 'city30', '00125000003', '2021-09-09'),
+(31, 'user31@gmail.com', 'password31', 'user31', 'city31', '00058800001', '2021-09-10'),
+(32, 'user32@gmail.com', 'password32', 'user32', 'city32', '00007770002', '2021-09-11'),
+(33, 'user33@gmail.com', 'password33', 'user33', 'city33', '0000225003', '2021-09-12'),
+(34, 'user34@gmail.com', 'password34', 'user34', 'city34', '0007890001', '2021-09-13'),
+(35, 'user35@gmail.com', 'password35', 'user35', 'city35', '0004560002', '2021-09-14'),
+(36, 'user36@gmail.com', 'password36', 'user36', 'city36', '0028500003', '2021-09-15'),
+(37, 'use37r@gmail.com', 'password37', 'user37', 'city37', '0045600001', '2021-09-16'),
+(38, 'user38@gmail.com', 'password38', 'user38', 'city38', '0000012202', '2021-09-17'),
+(39, 'user39@gmail.com', 'password39', 'user39', 'city39', '0141000003', '2021-09-18'),
+(40, 'user40@gmail.com', 'password40', 'user40', 'city40', '0078950001', '2021-09-19'),
+(41, 'user41@gmail.com', 'password41', 'user41', 'city41', '0001257002', '2021-09-20'),
+(42, 'use42r@gmail.com', 'password42', 'user42', 'city42', '1400000003', '2021-09-21'),
+(43, 'use43r@gmail.com', 'password43', 'user43', 'city43', '0001450001', '2021-09-22'),
+(44, 'user44@gmail.com', 'password44', 'user44', 'city44', '0001250002', '2021-09-23'),
+(45, 'user45@gmail.com', 'password45', 'user45', 'city45', '00001280003', '2021-09-24'),
+(46, 'user46@gmail.com', 'password46', 'user46', 'city46', '00255000041', '2021-09-25'),
+(47, 'user47@gmail.com', 'password47', 'user47', 'city47', '00000255802', '2021-09-26'),
+(48, 'user48@gmail.com', 'password48', 'user48', ' city48', '0000255003', '2021-09-27'),
+(49, 'user49@gmail.com', 'password49', 'user49', 'city49', '0000255001', '2021-09-28'),
+(50, 'user50@gmail.com', 'password50', 'user50', 'city50', '0000258002', '2021-09-29');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
