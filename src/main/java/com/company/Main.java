@@ -1,4 +1,5 @@
 package com.company;
+import com.company.ReportWriteFactory.OrderWrite;
 import com.company.ReportWriteFactory.ProductsWrite;
 import com.company.ReportWriteFactory.UserWrite;
 import com.company.databasRead.DatabaseTableDataRepository;
@@ -34,7 +35,7 @@ public class Main {
         uw.main(resultSet);
 
         OrderWrite ow=new OrderWrite();
-        ow.m
+        ow.main(resultSet);
         
         //ask for output doc type
         int outputMethod = userInstruction.outputType();
