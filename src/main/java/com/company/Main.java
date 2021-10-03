@@ -1,4 +1,6 @@
 package com.company;
+import com.company.ReportWriteFactory.ProductsWrite;
+import com.company.ReportWriteFactory.UserWrite;
 import com.company.databasRead.DatabaseTableDataRepository;
 import com.company.reportsend.ReportSendMail;
 import com.company.ui.UserInstruction;
@@ -25,10 +27,15 @@ public class Main {
         DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository("2021-06-13", "2021-06-18", "products");
         ResultSet resultSet = databaseTableDataRepository.getTableData();
 
-        ExelWrite exelWrite = new ExelWrite();
-        exelWrite.main(resultSet);
+        ProductsWrite pw = new ProductsWrite();
+        pw.main(resultSet);
 
+        UserWrite uw=new UserWrite();
+        uw.main(resultSet);
 
+        OrderWrite ow=new OrderWrite();
+        ow.m
+        
         //ask for output doc type
         int outputMethod = userInstruction.outputType();
         if(outputMethod == 2) {
