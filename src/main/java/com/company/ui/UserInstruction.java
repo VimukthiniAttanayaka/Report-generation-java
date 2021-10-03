@@ -8,11 +8,9 @@ import java.util.Scanner;
 import java.text.SimpleDateFormat;
 
 public class UserInstruction implements UI{
-<<<<<<< HEAD
+
 
     ConsoleOutPut consoleOutPut = new ConsoleOutPut();
-=======
->>>>>>> 575bd5903f36475cffa134a2842e87080936851e
 
     public int UserInstruction() {
 

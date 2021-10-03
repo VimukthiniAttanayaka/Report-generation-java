@@ -2,6 +2,7 @@ package com.company.userInputOutputCheck;
 
 import com.company.ReportWriteFactory.ExcelWriteFactory;
 import com.company.consoleOutPut.ConsoleOutPut;
+import com.company.reportsend.ReportSendException;
 import com.company.reportsend.ReportSendMail;
 
 import javax.mail.MessagingException;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CheckOutPutMethod {
-    public void getOutPut(int outputMethod, int reportType, ResultSet resultSet) throws MessagingException, IOException, SQLException, ClassNotFoundException {
+    public void getOutPut(int outputMethod, int reportType, ResultSet resultSet) throws MessagingException, IOException, SQLException, ClassNotFoundException, ReportSendException {
 
         ConsoleOutPut consoleOutPut = new ConsoleOutPut();
 

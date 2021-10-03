@@ -1,21 +1,23 @@
 package com.company;
+
+import com.company.databaseRead.DatabaseTableDataRepository;
+import com.company.reportsend.ReportSendException;
+import com.company.ui.UserInstruction;
 import com.company.userInputOutputCheck.CheckOutPutMethod;
 import com.company.userInputOutputCheck.CheckReportName;
-import com.company.databaseRead.DatabaseTableDataRepository;
-import com.company.ui.UserInstruction;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.mail.MessagingException;
 
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException, MessagingException, IOException, ParseException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, MessagingException, IOException, ParseException, ReportSendException {
 
 
         UserInstruction userInstruction = new UserInstruction();
