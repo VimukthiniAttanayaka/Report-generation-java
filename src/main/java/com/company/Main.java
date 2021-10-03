@@ -1,8 +1,7 @@
 package com.company;
-import com.company.ReportWriteFactory.ExcelWriteFactory;
-import com.company.UserInputChecker.CheckReportName;
-import com.company.databasRead.DatabaseTableDataRepository;
-import com.company.reportsend.ReportSendMail;
+import com.company.userInputOutputCheck.CheckOutPutMethod;
+import com.company.userInputOutputCheck.CheckReportName;
+import com.company.databaseRead.DatabaseTableDataRepository;
 import com.company.ui.UserInstruction;
 
 import java.io.IOException;
@@ -11,7 +10,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 import javax.mail.MessagingException;
 
 
@@ -37,35 +35,9 @@ public class Main {
 
         //ask for output doc type
         int outputMethod = userInstruction.outputType();
-        if (outputMethod ==1 || outputMethod ==2) {
 
-            ExcelWriteFactory excelWriteFactory =new ExcelWriteFactory();
-            excelWriteFactory.reportGenerate(reportType, resultSet);
-
-            if(outputMethod == 2) {
-
-                System.out.println("Please enter email address");
-                Scanner getEmail = new Scanner(System.in);
-                String emailReceipient = getEmail.next();
-
-                String FilePath = "./ResultSheet.xlsx";
-
-                ReportSendMail reportSendMail = new ReportSendMail();
-                reportSendMail.sendReportMain(emailReceipient, FilePath);
-
-            }else{
-
-                System.out.println("Report saved successfully");
-
-            }
-        }
-
-         else {
-
-            System.out.println("Wrong Input");
-
-        }
-
+        CheckOutPutMethod checkOutPutMethod = new CheckOutPutMethod();
+        checkOutPutMethod.getOutPut(outputMethod, reportType, resultSet);
 
     }
 }

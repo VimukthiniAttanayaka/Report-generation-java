@@ -1,4 +1,4 @@
-package com.company.databasRead;
+package com.company.databaseRead;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package com.company.UserInputChecker;
+package com.company.userInputOutputCheck;
 
 public class CheckReportName{
 
