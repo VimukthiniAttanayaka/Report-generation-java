@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
 
-public class UserInstruction {
+public class UserInstruction implements UI{
 
     public int UserInstruction() {
         System.out.println("Hello, Welcome !");

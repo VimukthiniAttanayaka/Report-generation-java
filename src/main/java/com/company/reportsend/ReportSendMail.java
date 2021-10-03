@@ -14,45 +14,54 @@ public class ReportSendMail implements ReportSend
     Session newSession = null;
     MimeMessage mimeMessage = null;
 
-    public void sendReportMain(String emailReceipient,String FilePath) throws MessagingException, IOException {
+    public void sendReportMain(String emailReceipient,String FilePath) throws ReportSendException {
         setupServerProperties();
-        draftEmail(emailReceipient,FilePath);
+        draftEmail(emailReceipient, FilePath);
         sendEmail();
     }
 
     //SEND EMAIL
-    private void sendEmail() throws MessagingException {
-        String fromUser = "etextile2021@gmail.com";
-        String fromUserPassword = "2021EText@$";
-        String emailHost = "smtp.gmail.com";
-        Transport transport = newSession.getTransport("smtp");
-        transport.connect(emailHost, fromUser, fromUserPassword);
-        transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
-        transport.close();
-        System.out.println("Email successfully sent!!!");
+    private void sendEmail() throws ReportSendException {
+        try {
+            String fromUser = "etextile2021@gmail.com";
+            String fromUserPassword = "2021EText@$";
+            String emailHost = "smtp.gmail.com";
+            Transport transport = newSession.getTransport("smtp");
+            transport.connect(emailHost, fromUser, fromUserPassword);
+            transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
+            transport.close();
+            System.out.println("Email successfully sent!!!");
+        }catch (MessagingException e){
+            throw new ReportSendException(e,"Something Wrong with the message sending");
+        }
     }
 
     //DRAFT AN EMAIL
-    private MimeMessage draftEmail(String emailReceipient,String FilePath) throws MessagingException, IOException {
+    private MimeMessage draftEmail(String emailReceipient,String FilePath) throws ReportSendException {
 
-        String emailSubject = "Report send using email";
-        String emailBody = "This a report, What you ask:";
-        mimeMessage = new MimeMessage(newSession);
+        try {
+            String emailSubject = "Report send using email";
+            String emailBody = "This a report, What you ask:";
+            mimeMessage = new MimeMessage(newSession);
 
-        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailReceipient));
-        mimeMessage.setSubject(emailSubject);
+            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emailReceipient));
+            mimeMessage.setSubject(emailSubject);
 
-        MimeBodyPart bodyPart = new MimeBodyPart();
-        bodyPart.setContent(emailBody,"text/html");
+            MimeBodyPart bodyPart = new MimeBodyPart();
+            bodyPart.setContent(emailBody,"text/html");
 
-        MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-        attachmentBodyPart.attachFile(new File(FilePath));
+            MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+            attachmentBodyPart.attachFile(new File(FilePath));
 
-        MimeMultipart multiPart = new MimeMultipart();
-        multiPart.addBodyPart(bodyPart);
-        multiPart.addBodyPart(attachmentBodyPart);
-        mimeMessage.setContent(multiPart);
-        return mimeMessage;
+            MimeMultipart multiPart = new MimeMultipart();
+            multiPart.addBodyPart(bodyPart);
+            multiPart.addBodyPart(attachmentBodyPart);
+            mimeMessage.setContent(multiPart);
+            return mimeMessage;
+        } catch (IOException | MessagingException e){
+            throw new ReportSendException(e,"Something Wrong with the message sending");
+        }
+
     }
 
     //SETUP MAIL SERVER PROPERTIES
