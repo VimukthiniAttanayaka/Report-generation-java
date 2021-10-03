@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `ProductID` int(11) NOT NULL AUTO_INCREMENT,
   `ProductName` varchar(100) COLLATE latin1_german2_ci NOT NULL,
   `ProductPrice` float NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` date NOT NULL,
   PRIMARY KEY (`ProductID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=991 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
 

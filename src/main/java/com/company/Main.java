@@ -1,7 +1,6 @@
 package com.company;
-import com.company.ReportWriteFactory.OrderWrite;
-import com.company.ReportWriteFactory.ProductsWrite;
-import com.company.ReportWriteFactory.UserWrite;
+import com.company.ReportWriteFactory.ExcelWriteFactory;
+import com.company.UserInputChecker.CheckReportName;
 import com.company.databasRead.DatabaseTableDataRepository;
 import com.company.reportsend.ReportSendMail;
 import com.company.ui.UserInstruction;
@@ -23,46 +22,49 @@ public class Main {
 
         UserInstruction userInstruction = new UserInstruction();
         int reportType = userInstruction.UserInstruction();//get input option from user
+
+        CheckReportName checkReportName = new CheckReportName();
+        String reportName = checkReportName.getReportName(reportType);
+
         Date reportStartDate = userInstruction.reportTimeDurationStart();  //get start date
         Date reportEndDate = userInstruction.reportTimeDurationEnd();  //get sed date
-
-
-
 
         String repoStartDate = new SimpleDateFormat("yyyy-MM-dd").format(reportStartDate);
         String repoEndDate = new SimpleDateFormat("yyyy-MM-dd").format(reportEndDate);
 
-        DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository("2021-06-13", "2021-06-18", "products");
+        DatabaseTableDataRepository databaseTableDataRepository = new DatabaseTableDataRepository(repoStartDate, repoEndDate, reportName);
         ResultSet resultSet = databaseTableDataRepository.getTableData();
 
-        ProductsWrite pw = new ProductsWrite();
-        pw.main(resultSet);
-
-        UserWrite uw=new UserWrite();
-        uw.main(resultSet);
-
-        OrderWrite ow=new OrderWrite();
-        ow.main(resultSet);
-        
         //ask for output doc type
         int outputMethod = userInstruction.outputType();
-        if(outputMethod == 2) {
+        if (outputMethod ==1 || outputMethod ==2) {
 
-            System.out.println("Please enter email address");
-            Scanner getEmail = new Scanner(System.in);
-            String emailReceipient = getEmail.next();
+            ExcelWriteFactory excelWriteFactory =new ExcelWriteFactory();
+            excelWriteFactory.reportGenerate(reportType, resultSet);
 
-            String FilePath = "./ResultSheet.xlsx";
+            if(outputMethod == 2) {
 
-            ReportSendMail reportSendMail = new ReportSendMail();
-            reportSendMail.sendReportMain(emailReceipient, FilePath);
+                System.out.println("Please enter email address");
+                Scanner getEmail = new Scanner(System.in);
+                String emailReceipient = getEmail.next();
 
-        } else {
+                String FilePath = "./ResultSheet.xlsx";
 
-            System.out.println("Your file is Successfully generated");
+                ReportSendMail reportSendMail = new ReportSendMail();
+                reportSendMail.sendReportMain(emailReceipient, FilePath);
 
+            }else{
+
+                System.out.println("Report saved successfully");
+
+            }
         }
 
+         else {
+
+            System.out.println("Wrong Input");
+
+        }
 
 
     }
